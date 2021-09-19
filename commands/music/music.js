@@ -9,7 +9,7 @@ module.exports = async function (robot, msg, args) {
     const server_queue = queue.get(msg.guild.id);    
     const bot_channel = msg.member.guild.channels.cache.find(channel => channel.name === "clatcher-junior-bot");
 
-    if (args[1] == "play") {
+    if (args[0] == "-play") {
         if (!permissions.has("CONNECT")) {
             return bot_channel.send("Сюзерен не разрешает мне выходить к людям.. Попросите его дать мне права на это.");
         }
@@ -63,19 +63,19 @@ module.exports = async function (robot, msg, args) {
             server_queue.songs.push(song);
             return bot_channel.send(`Отлично! Эту песню я спою следующей: ${song.title}`);
         }
-    } else if (args[1] == 'skip') {
+    } else if (args[0] == '-skip') {
         if(!msg.member.voice.channel) 
             return bot_channel.send('Я не слышу! Зайди в канал, чтоб использовать эту команду.');
         if(!server_queue) {
             return bot_channel.send('В очереди нет песен');
         }
         server_queue.connection.dispatcher.end();
-    } else if (args[1] == 'stop') {
+    } else if (args[0] == '-stop') {
         if (!msg.member.voice.channel) 
             return bot_channel.send('Я не слышу! Зайди в канал, чтоб использовать эту команду.');
         server_queue.songs = [];
         server_queue.connection.dispatcher.end();
-    } else if (args[1] == 'pause') {
+    } else if (args[0] == '-pause') {
         //реализовать паузу
     }
 }

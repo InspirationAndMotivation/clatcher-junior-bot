@@ -13,7 +13,10 @@ const waifu = require('./commands/fun/looking_for_waifu');
 const gif = require('./commands/fun/gif');
 
 // Music actions
-const music = require('./commands/music/music');
+//const music = require('./commands/music/music');
+const play = require('./commands/music/music');
+const skip = require('./commands/music/music');
+const stop = require('./commands/music/music');
 
 // Samurai actions
 const busido = require('./commands/samurai/busido');
@@ -38,30 +41,30 @@ function introducing(robot, msg) {
 	.addFields(
 		{ name: 'Команды', value: 'Здесь ты можешь посмотреть всё, что я умею:' },
         { name: ':black_joker: Развлекательные действия', value: 'Just for fun ' },
-		{ name: '!waifu', value: 'Используй, чтоб найти для себя Вайфу :smirk:', inline: true },
-		{ name: '!flip', value: 'Используй, чтоб подбросить монетку', inline: true },
-		{ name: '!auf', value: 'Используй, чтоб прочитать цитату дня', inline: true },
+		{ name: '-waifu', value: 'Используй, чтоб найти для себя Вайфу :smirk:', inline: true },
+		{ name: '-flip', value: 'Используй, чтоб подбросить монетку', inline: true },
+		{ name: '-auf', value: 'Используй, чтоб прочитать цитату дня', inline: true },
         { name: ':notes: Музыкальные действия', value: 'Для сюзерена ' },
-		{ name: '!sing', value: 'В скором времени я научусь петь', inline: true },
-		{ name: '!music play', value: 'Включить музыку', inline: true },
-		{ name: '!music skip', value: 'Пропустить песню', inline: true },
-		{ name: '!music stop', value: 'Выключить музыку ', inline: true },
-		{ name: '!music pause', value: 'Поставить песню на паузу (пока не работает)', inline: true },
+		{ name: '-sing', value: 'В скором времени я научусь петь', inline: true },
+		{ name: '-play', value: 'Включить музыку', inline: true },
+		{ name: '-skip', value: 'Пропустить песню', inline: true },
+		{ name: '-stop', value: 'Выключить музыку ', inline: true },
+		{ name: '-pause', value: 'Поставить песню на паузу (пока не работает)', inline: true },
         { name: ':japanese_ogre: Самурайские действия', value: 'Для истинных воинов ' },
-		{ name: '!katana', value: 'Скоро я буду демонстрировать свои навыки.', inline: true },
-		{ name: '!busido', value: 'Используй, чтоб узнать больше правил из Кодекса Самурая!', inline: true },
+		{ name: '-katana', value: 'Скоро я буду демонстрировать свои навыки.', inline: true },
+		{ name: '-busido', value: 'Используй, чтоб узнать больше правил из Кодекса Самурая!', inline: true },
         { name: ':heart: Админские действия', value: 'Для сюзерена ' },
-		{ name: '!ban', value: 'В скором времени я научусь банить пользователей', inline: true },
-		{ name: '!clear n', value: 'Используй, чтоб удалить последние n сообщений в чате (не больше 100 за раз)', inline: true },
+		{ name: '-ban', value: 'В скором времени я научусь банить пользователей', inline: true },
+		{ name: '-clear n', value: 'Используй, чтоб удалить последние n сообщений в чате (не больше 100 за раз)', inline: true },
         { name: ':smirk: Социальные действия', value: 'Для истинных социальщиков ' },
-		{ name: '!hug', value: 'Используй, чтоб обнять кого-нибудь на сервере.', inline: true },
-		{ name: '!kiss', value: 'Используй, чтоб поцеловать кого-нибудь на сервере', inline: true },
-		{ name: '!bite', value: 'Используй, чтоб укусить кого-нибудь на сервере', inline: true },
-		{ name: '!slap', value: 'Используй, чтоб шлёпнуть кого-нибудь на сервере', inline: true },
-		{ name: '!hit', value: 'Используй, чтоб ударить кого-нибудь на сервере', inline: true },
-		{ name: '!poke', value: 'Используй, чтоб обратить чьё-то внимание на себя', inline: true }
+		{ name: '-hug', value: 'Используй, чтоб обнять кого-нибудь на сервере.', inline: true },
+		{ name: '-kiss', value: 'Используй, чтоб поцеловать кого-нибудь на сервере', inline: true },
+		{ name: '-bite', value: 'Используй, чтоб укусить кого-нибудь на сервере', inline: true },
+		{ name: '-slap', value: 'Используй, чтоб шлёпнуть кого-нибудь на сервере', inline: true },
+		{ name: '-hit', value: 'Используй, чтоб ударить кого-нибудь на сервере', inline: true },
+		{ name: '-poke', value: 'Используй, чтоб обратить чьё-то внимание на себя', inline: true }
 	)
-	.setFooter('© 2021 by the best girl ever - Sour Flavor');
+	.setFooter('© 2021 by the best girl ever - Anastasia');
 
     msg.channel.send(introducingEmbed);
 }
@@ -149,9 +152,19 @@ var commands_list = [
     about: "Высылает гиф на запрошенную тему."
 },
 {
-    name: "music",
-    out: music,
-    about: "Даёт доступ к музыкальным командам бота."
+    name: "play",
+    out: play,
+    about: "Включает музыку по заданной ссылке (либо по ключевым словам)."
+},
+{
+    name: "skip",
+    out: skip,
+    about: "Пролистывает на следующую песню."
+},
+{
+    name: "stop",
+    out: stop,
+    about: "Выключает музыкального бота."
 }
 ];
 
