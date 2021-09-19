@@ -21,8 +21,8 @@ module.exports = async function (robot, msg, args) {
             return bot_channel.send('Вы не указали какую песню Вам спеть!');
         
         let song = {};
-        if (ytdl.validateURL(args[0])) {
-            const song_info = await ytdl.getInfo(args[0]);
+        if (ytdl.validateURL(args[1])) {
+            const song_info = await ytdl.getInfo(args[1]);
             song = { title: song_info.videoDetails.title, media: song_info.videoDetails.media, url: song_info.videoDetails.video_url };
         } else {
             //Если у нас не URL, тогда ищем видео по ключевым словам
