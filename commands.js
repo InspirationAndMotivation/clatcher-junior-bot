@@ -50,6 +50,8 @@ function introducing(robot, msg) {
 		{ name: '-skip', value: 'Пропустить песню', inline: true },
 		{ name: '-stop', value: 'Выключить музыку ', inline: true },
 		{ name: '-pause', value: 'Поставить песню на паузу (пока не работает)', inline: true },
+        { name: '-playlist', value: 'Показать плэйлист ', inline: true },
+        { name: '-delete (n)', value: 'Удалить n-ую песню из списка проигрывания, если n не задано - удаляет последнюю', inline: true },
         { name: ':japanese_ogre: Самурайские действия', value: 'Для истинных воинов ' },
 		{ name: '-katana', value: 'Скоро я буду демонстрировать свои навыки.', inline: true },
 		{ name: '-busido', value: 'Используй, чтоб узнать больше правил из Кодекса Самурая!', inline: true },
@@ -165,6 +167,16 @@ var commands_list = [
     name: "stop",
     out: stop,
     about: "Выключает музыкального бота."
+},
+{
+    name: "playlist",
+    out: stop,
+    about: "Отображает текущий плейлист."
+},
+{
+    name: "delete",
+    out: stop,
+    about: "Удаляет песню из плейлиста."
 }
 ];
 

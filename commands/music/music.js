@@ -75,6 +75,34 @@ module.exports = async function (robot, msg, args) {
             return bot_channel.send('Я не слышу! Зайди в канал, чтоб использовать эту команду.');
         server_queue.songs = [];
         server_queue.connection.dispatcher.end();
+    } else if (args[0] == '-playlist') {
+        if (server_queue === undefined) {
+            bot_channel.send('Я пока ничего не пою...Используй команду, чтоб сказать мне что петь');
+        } else {
+            for (let i=0; i<server_queue.songs.length; i++) {
+                let msg = (i+1) + `. ${server_queue.songs[i].title}`;
+                if (i==0) msg = msg + ` **(пою сейчас)**`;
+                if (i==1) msg = msg + ` **(буду петь следующей)**`;
+                bot_channel.send(msg);
+            }
+        }
+    } else if (args[0] == '-delete') {
+        if (args[1] === undefined) {
+            server_queue.songs.pop();
+        } else if (args[1] < 0) {
+            bot_channel.send('Это как это? Я нумерую от 1 до n...');
+        } else {
+            if (server_queue === undefined) {
+                bot_channel.send('Я же молчал! Нельзя перестать петь, если не пел :thinking:');    
+            }
+            console.log(server_queue.songs.length);
+            if (server_queue.songs.length > 1) {
+                server_queue.songs.splice(args[1]-1, 1);
+            } else {
+                server_queue.songs = [];
+                server_queue.connection.dispatcher.end();
+            }
+        }
     } else if (args[0] == '-pause') {
         //реализовать паузу
     }
